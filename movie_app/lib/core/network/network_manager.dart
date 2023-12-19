@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/config/app_config.dart';
 import 'package:movie_app/core/interfaces/initialization_adapter.dart';
+import 'package:movie_app/utilities/di/dependency_injection.dart';
 
 class NetworkManager implements InitializationAdapter {
   @override
@@ -11,7 +12,7 @@ class NetworkManager implements InitializationAdapter {
     _addInterceptors();
   }
 
-  final String _baseUrl = AppConfig.baseUrl;
+  final String _baseUrl = getIt<AppConfig>().baseUrl ?? '';
   late final Dio _dio;
 
   BaseOptions _createBaseOptions() {
