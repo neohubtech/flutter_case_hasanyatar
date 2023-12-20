@@ -16,36 +16,43 @@ final class DependencyInjector implements Injector {
   }
 
   @override
-  void registerLazySingleton<T extends Object>(T Function() function) {
+  DependencyInjector registerLazySingleton<T extends Object>(
+      T Function() function) {
     if (!_getIt.isRegistered<T>()) {
       _getIt.registerLazySingleton<T>(
         () => function.call(),
       );
     }
+    return this;
   }
 
   @override
-  void registerSingleton<T extends Object>(T instance) {
+  DependencyInjector registerSingleton<T extends Object>(T instance) {
     if (!_getIt.isRegistered<T>()) {
       _getIt.registerSingleton<T>(instance);
     }
+    return this;
   }
 
   @override
-  void registerFactory<T extends Object>(T Function() function) {
+  DependencyInjector registerFactory<T extends Object>(T Function() function) {
     if (!_getIt.isRegistered<T>()) {
       _getIt.registerFactory<T>(() => function.call());
     }
+    return this;
   }
 
   @override
   T get<T extends Object>() => _getIt.get<T>();
 
   @override
-  void unregister<T extends Object>() => _getIt.unregister<T>();
+  DependencyInjector unregister<T extends Object>() {
+    _getIt.unregister<T>();
+    return this;
+  }
 
   @override
-  Future<void> registerSingletonAsync<T extends Object>(
+  Future<DependencyInjector> registerSingletonAsync<T extends Object>(
     AsyncFunc<T> factoryFunc, {
     String? instanceName,
     Iterable<Type>? dependsOn,
@@ -61,6 +68,7 @@ final class DependencyInjector implements Injector {
         dispose: dispose,
       );
     }
+    return this;
   }
 
   @override

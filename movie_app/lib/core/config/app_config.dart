@@ -7,7 +7,7 @@ class AppConfig implements InitializationAdapter {
   // Other app configurations can be added here.
 
   @override
-  Future<FutureOr<void>> initialize() async {
+  FutureOr<void> initialize() async {
     await dotenv.load(fileName: 'assets/environment/dev.env');
     baseUrl = dotenv.env['BASE_URL'] ?? '';
   }

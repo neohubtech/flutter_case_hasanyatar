@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:movie_app/core/blocs/connectivity_bloc/connectivity_bloc.dart';
 import 'package:movie_app/core/config/app_config.dart';
 import 'package:movie_app/core/injection/dependency_injector.dart';
 import 'package:movie_app/core/interfaces/initialization_adapter.dart';
@@ -13,16 +14,14 @@ class DependencyInjection implements InitializationAdapter {
   static const shared = DependencyInjection._();
 
   @override
-  FutureOr<void> initialize() {
-    // TODO: implement initialize
-    throw UnimplementedError();
+  FutureOr<void> initialize() async {
+    await _configureInjections();
   }
 
-  List<RepositoryProvider<dynamic>> rootProviders() {
-    return [
-      RepositoryProvider<AppConfig>(
-        create: (_) => getIt<AppConfig>(),
-      ),
-    ];
+  Future<void> _configureInjections() async {
+    getIt
+        .registerSingleton<AppConfig>(AppConfig()..initialize())
+        .registerSingleton<Connectivity>(Connectivity())
+        .registerLazySingleton<ConnectivityBloc>(ConnectivityBloc.new);
   }
 }
