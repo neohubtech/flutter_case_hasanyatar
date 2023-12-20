@@ -22,6 +22,7 @@ dependencies:
   equatable: ^2.0.5
   connectivity_plus: ^5.0.2
   flutter_screenutil: ^5.9.0
+  
  
 
 dev_dependencies:
@@ -30,6 +31,8 @@ dev_dependencies:
 
   # https://pub.dev/packages/very_good_analysis
   very_good_analysis: ^5.1.0
+  bloc_test: ^9.1.5
+  mocktail: ^1.0.2
 
 
 flutter:

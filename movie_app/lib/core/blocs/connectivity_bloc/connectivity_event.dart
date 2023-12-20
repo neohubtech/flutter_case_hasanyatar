@@ -8,12 +8,3 @@ abstract class ConnectivityEvent extends Equatable {
 }
 
 class CheckConnectivityStatus extends ConnectivityEvent {}
-
-class UpdateConnectivityStatus extends ConnectivityEvent {
-  const UpdateConnectivityStatus(this.connectivityResult);
-
-  final ConnectivityResult connectivityResult;
-
-  @override
-  List<Object?> get props => [connectivityResult];
-}

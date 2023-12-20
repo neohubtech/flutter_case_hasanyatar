@@ -22,6 +22,8 @@ class DependencyInjection implements InitializationAdapter {
     getIt
         .registerSingleton<AppConfig>(AppConfig()..initialize())
         .registerSingleton<Connectivity>(Connectivity())
-        .registerLazySingleton<ConnectivityBloc>(ConnectivityBloc.new);
+        .registerLazySingleton<ConnectivityBloc>(
+          () => ConnectivityBloc(getIt<Connectivity>()),
+        );
   }
 }
