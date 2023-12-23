@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/app_initializers.dart';
 import 'package:movie_app/core/blocs/connectivity_bloc/connectivity_bloc.dart';
+import 'package:movie_app/modules/home/presentation/home_screen.dart';
+import 'package:movie_app/modules/home/presentation/principal_screen.dart';
 import 'package:movie_app/utilities/di/global_bloc_providers.dart';
 
 void main() {
   AppInitializers.initialize();
+
   runApp(const MyApp());
 }
 
@@ -57,7 +60,7 @@ class _MaterialAppBody extends StatelessWidget {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
           }
         },
-        child: Container(),
+        child: const PrincipalScreen(),
       ),
     );
   }
