@@ -29,10 +29,10 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     }
   }
 
-  FutureOr<void> _onCheckConnectivityStatus(
+  void _onCheckConnectivityStatus(
     CheckConnectivityStatus event,
     Emitter<ConnectivityState> emit,
-  ) async {
+  ) {
     emit(const ConnectivityChecking());
     _subscription = connectivity.onConnectivityChanged.listen(
       (connectivityResult) {

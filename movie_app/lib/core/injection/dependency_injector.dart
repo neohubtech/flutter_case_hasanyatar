@@ -17,7 +17,8 @@ final class DependencyInjector implements Injector {
 
   @override
   DependencyInjector registerLazySingleton<T extends Object>(
-      T Function() function) {
+    T Function() function,
+  ) {
     if (!_getIt.isRegistered<T>()) {
       _getIt.registerLazySingleton<T>(
         () => function.call(),
