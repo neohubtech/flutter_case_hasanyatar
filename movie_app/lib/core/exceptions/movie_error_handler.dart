@@ -1,57 +1,86 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:movie_app/core/interfaces/error_message_handler.dart';
 
 /// `MovieErrorHandler` is a class that implements the `ErrorMessageHandler` interface
 /// and is responsible for returning custom error messages.
+///
+
+class ErrorResponse<T extends Exception> {
+  ErrorResponse(this.message, {required this.exception});
+  final String message;
+  final T exception;
+}
+
 class MovieErrorHandler implements ErrorMessageHandler {
   MovieErrorHandler._();
   static final shared = MovieErrorHandler._();
 
   /// Determines the error message based on the type of exception.
   @override
-  String getErrorMessage(dynamic exception) {
-    switch (exception.runtimeType) {
-      case DioException:
-        return _handleDioException(exception as DioException);
-      // Add more exception cases here if needed.
-      default:
-        return _handleDefaultException(exception);
-    }
-  }
+  ErrorResponse getErrorMessage(Exception exception) =>
+      switch (exception.runtimeType) {
+        DioException => _handleDioException(exception as DioException),
+        // Add more error handlers here.
+        _ => ErrorResponse('Unknown error', exception: exception),
+      };
 
   /// Handles DioException errors and returns the appropriate error message.
-  String _handleDioException(DioException exception) {
+  ErrorResponse<DioException> _handleDioException(DioException exception) {
     switch (exception.type) {
       case DioException.connectionTimeout:
-        return 'Connection timeout';
+        return ErrorResponse<DioException>(
+          'Connection timeout',
+          exception: exception,
+        );
       case DioExceptionType.connectionError:
-        return 'Connection error';
+        return ErrorResponse<DioException>(
+          'Connection error',
+          exception: exception,
+        );
 
       case DioException.sendTimeout:
-        return 'Send timeout';
+        return ErrorResponse<DioException>(
+          'Send timeout',
+          exception: exception,
+        );
 
       case DioException.receiveTimeout:
-        return 'Receive timeout';
+        return ErrorResponse<DioException>(
+          'Receive timeout',
+          exception: exception,
+        );
 
       case DioException.badResponse:
         // Added a more informative error message for response errors.
         if (exception.response?.statusCode == 404) {
-          return 'Resource not found';
+          return ErrorResponse<DioException>(
+            'Not found',
+            exception: exception,
+          );
         } else {
-          return 'Unexpected error occurred';
+          return ErrorResponse<DioException>(
+            'Bad response',
+            exception: exception,
+          );
         }
 
       case DioException.requestCancelled:
-        return 'Request canceled';
+        return ErrorResponse<DioException>(
+          'Request cancelled',
+          exception: exception,
+        );
 
       default:
-        return 'Unexpected error occurred';
+        return ErrorResponse<DioException>(
+          'Unknown error',
+          exception: exception,
+        );
     }
   }
 
-  /// Handles non-DioException errors and returns a general error message.
-  String _handleDefaultException(dynamic exception) {
-    // Optionally, you can perform custom handling here.
-    return 'An unexpected error occurred';
+  @override
+  ErrorResponse<Exception> defaultErrorMessage() {
+    return ErrorResponse('Bilinmeyen bir hata oluştu.', exception: Exception());
   }
 }
