@@ -23,6 +23,7 @@ dependencies:
   equatable: ^2.0.5
   connectivity_plus: ^5.0.2
   flutter_screenutil: ^5.9.0
+  flutter_neumorphic_plus: ^3.3.0
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
   retrofit: ^4.0.3
@@ -47,5 +48,7 @@ flutter:
 
   assets:
     - assets/environment/
+    - assets/images/
+    - assets/images/adventure.jpeg
 
 
