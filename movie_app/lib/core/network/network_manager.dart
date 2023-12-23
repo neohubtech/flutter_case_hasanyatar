@@ -2,18 +2,16 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/config/app_config.dart';
-import 'package:movie_app/core/interfaces/initialization_adapter.dart';
 import 'package:movie_app/utilities/di/dependency_injection.dart';
 
-class NetworkManager implements InitializationAdapter {
-  @override
-  FutureOr<void> initialize() {
-    _dio = Dio(_createBaseOptions());
+class NetworkManager {
+  NetworkManager() {
+    dio = Dio(_createBaseOptions());
     _addInterceptors();
   }
 
   final String _baseUrl = getIt<AppConfig>().baseUrl ?? '';
-  late final Dio _dio;
+  late final Dio dio;
 
   BaseOptions _createBaseOptions() {
     return BaseOptions(
@@ -28,6 +26,8 @@ class NetworkManager implements InitializationAdapter {
 
   void _addInterceptors() {
     // Add your interceptors here if needed
+    // Example
+    // dio.interceptors.add(ExampleInterceptor());
   }
 
   Map<String, dynamic>? _createHeaders() {
@@ -35,7 +35,8 @@ class NetworkManager implements InitializationAdapter {
   }
 
   Future<Response<dynamic>> _request(
-      Future<Response<dynamic>> Function() requestFunction) async {
+    Future<Response<dynamic>> Function() requestFunction,
+  ) async {
     try {
       return await requestFunction();
     } on DioException {
@@ -48,21 +49,21 @@ class NetworkManager implements InitializationAdapter {
   // HTTP POST request
   Future<Response<dynamic>> post(String path, dynamic data) async {
     return _request(
-      () => _dio.post(path, data: data),
+      () => dio.post(path, data: data),
     );
   }
 
   // HTTP PUT request
   Future<Response<dynamic>> put(String path, dynamic data) async {
     return _request(
-      () => _dio.put(path, data: data),
+      () => dio.put(path, data: data),
     );
   }
 
   // HTTP DELETE request
   Future<Response<dynamic>> delete(String path) async {
     return _request(
-      () => _dio.delete(path),
+      () => dio.delete(path),
     );
   }
 
@@ -72,7 +73,7 @@ class NetworkManager implements InitializationAdapter {
     Map<String, dynamic>? queryParameters,
   }) async {
     return _request(
-      () => _dio.get(
+      () => dio.get(
         path,
         queryParameters: queryParameters,
       ),
