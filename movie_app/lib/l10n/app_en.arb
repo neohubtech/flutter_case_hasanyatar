@@ -7,17 +7,24 @@
             }
         }
     },
+    "action": "Action",
     "added_to_basket": "Added to basket",
+    "adventure": "Adventure",
+    "animation": "Animation",
     "categories": "Categories",
+    "comedy": "Comedy",
     "home": "Home",
+    "horror": "Horror",
     "more": "More",
     "most_popular": "Most popular",
     "my_basket": "My basket",
     "my_list": "My list",
     "new_releases": "New releases",
-    "no_internet_connection": "No Internet connection available",
+    "no_internet_connection": "No Internet connection was found. Check your connection or try again.",
+    "science_fiction": "Science fiction",
     "see_all": "See all",
     "system_error_occurred": "A system error has been detected. We will fix it as soon as possible.",
     "there_are_count_movies": "There are {count} movies in your card",
-    "there_are_no_movies": "There are no movies in your card"
+    "there_are_no_movies": "There are no movies in your basket",
+    "whoops": "Whoops!!"
 }

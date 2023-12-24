@@ -7,17 +7,24 @@
             }
         }
     },
+    "action": "Aksiyon",
     "added_to_basket": "Sepete eklendi",
+    "adventure": "Macera",
+    "animation": "Animasyon",
     "categories": "Kategoriler",
+    "comedy": "Komedi",
     "home": "Ana Sayfa",
+    "horror": "Korku",
     "more": "Daha Fazla",
     "most_popular": "En Popüler",
     "my_basket": "Sepetim",
     "my_list": "Listem",
     "new_releases": "Yeni Çıkanlar",
-    "no_internet_connection": "İnternet bağlantısı yok",
+    "no_internet_connection": "İnternet bağlantısı bulunamadı. Bağlantınızı kontrol edin veya tekrar deneyin.",
+    "science_fiction": "Bilim Kurgu",
     "see_all": "Tümünü Gör",
     "system_error_occurred": "Bir sistem hatası tespit edildi. En kısa sürede düzelteceğiz.",
     "there_are_count_movies": "Sepetinizde {count} adet film bulunmaktadır.",
-    "there_are_no_movies": "Sepetinizde film bulunmamaktadır."
+    "there_are_no_movies": "Sepetinizde film bulunmamaktadır.",
+    "whoops": "Hata!"
 }

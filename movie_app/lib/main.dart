@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/app_initializers.dart';
 import 'package:movie_app/core/blocs/connectivity_bloc/connectivity_bloc.dart';
+import 'package:movie_app/core/widgets/dialogs/no_internet_dialog.dart';
 import 'package:movie_app/modules/home/presentation/principal_screen.dart';
 import 'package:movie_app/utilities/di/global_bloc_providers.dart';
-import 'package:movie_app/utilities/extensions/localization_extension.dart';
 
 void main() {
   AppInitializers.initialize();
@@ -49,18 +49,15 @@ class _MaterialAppBody extends StatelessWidget {
       body: BlocListener<ConnectivityBloc, ConnectivityState>(
         listener: (context, state) {
           if (state is NoInternetConnection) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: const Color(0xffFA6B00),
-                duration: const Duration(days: 365),
-                content: Padding(
-                  padding: EdgeInsets.all(16.r),
-                  child: Text(context.localizations.no_internet_connection),
-                ),
-              ),
+            showDialog<void>(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) => const NoInternetDialog(),
             );
           } else if (state is ConnectedToInternet) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            if (Navigator.of(context).canPop()) {
+              Navigator.of(context).pop();
+            }
           }
         },
         child: const PrincipalScreen(),

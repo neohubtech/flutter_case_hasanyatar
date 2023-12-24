@@ -19,10 +19,6 @@ class ConnectedToInternet extends ConnectivityState {
   const ConnectedToInternet();
 }
 
-class ReConnectedToInternet extends ConnectedToInternet {
-  const ReConnectedToInternet();
-}
-
 class NoInternetConnection extends ConnectivityState {
   const NoInternetConnection();
 }

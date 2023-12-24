@@ -13,37 +13,31 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   }
 
   final Connectivity connectivity;
-  late StreamSubscription<ConnectivityResult> _subscription;
 
-  void _updateConnectivityStatus(
+  ConnectivityState _updateConnectivityStatus(
     ConnectivityResult connectivityResult,
     Emitter<ConnectivityState> emit,
   ) {
     switch (connectivityResult) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        emit(const ConnectedToInternet());
+        return const ConnectedToInternet();
       default:
-        emit(const NoInternetConnection());
-        break;
+        return const NoInternetConnection();
     }
   }
 
-  void _onCheckConnectivityStatus(
+  Future<void> _onCheckConnectivityStatus(
     CheckConnectivityStatus event,
     Emitter<ConnectivityState> emit,
-  ) {
+  ) async {
     emit(const ConnectivityChecking());
-    _subscription = connectivity.onConnectivityChanged.listen(
-      (connectivityResult) {
-        _updateConnectivityStatus(connectivityResult, emit);
-      },
+    // Warning(Simulator): On iOS, the connectivity status might not update when WiFi status changes,
+    // this is a known issue that only affects simulators. For details see https://github.com/fluttercommunity/plus_plugins/issues/479.
+    await emit.forEach(
+      connectivity.onConnectivityChanged,
+      onData: (ConnectivityResult result) =>
+          _updateConnectivityStatus(result, emit),
     );
-  }
-
-  @override
-  Future<void> close() async {
-    await _subscription.cancel();
-    return super.close();
   }
 }
