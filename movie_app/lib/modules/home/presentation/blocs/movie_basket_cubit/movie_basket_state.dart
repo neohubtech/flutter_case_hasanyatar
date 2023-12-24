@@ -12,5 +12,8 @@ class MovieBasketState extends Equatable {
   bool shouldContainMovie(CombinedList data) => combinedList.contains(data);
 
   @override
-  List<Object> get props => [combinedList, shouldContainMovie];
+  List<Object> get props => [combinedList, movieCount];
+
+  @override
+  bool get stringify => true;
 }
