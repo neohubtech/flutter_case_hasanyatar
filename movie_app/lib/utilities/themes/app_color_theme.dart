@@ -30,6 +30,11 @@ class AppColorTheme {
   static const purple = Color(0xff9D19EA);
 
   // Semantics
+  static const material70 = Color(0xffCFBCFF);
+  static const material60 = Color(0xff9A83DB);
+  static const material50 = Color(0xff8069BF);
+  static const material40 = Color(0xff6750A4);
+  static const material30 = Color(0xff4F378A);
 
   static const negative = Color(0xffB65E49);
 
