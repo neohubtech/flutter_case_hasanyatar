@@ -10,11 +10,11 @@ class MockConnectivity extends Mock implements Connectivity {}
 
 void main() {
   late ConnectivityBloc connectivityBloc;
-  final mockConnectivity = MockDependencyInjection();
+  final mockDI = MockDependencyInjection();
 
   setUp(() async {
-    await mockConnectivity.initialize();
-    connectivityBloc = ConnectivityBloc(mockConnectivity.connectivity);
+    await mockDI.initialize();
+    connectivityBloc = ConnectivityBloc(mockDI.connectivity);
   });
 
   tearDown(() {
@@ -24,8 +24,7 @@ void main() {
   blocTest<ConnectivityBloc, ConnectivityState>(
     'emits [ConnectivityChecking, ConnectedToInternet] when ConnectivityResult.wifi is received',
     build: () {
-      when(() => mockConnectivity.connectivity.onConnectivityChanged)
-          .thenAnswer(
+      when(() => mockDI.connectivity.onConnectivityChanged).thenAnswer(
         (_) =>
             Stream<ConnectivityResult>.fromIterable([ConnectivityResult.wifi]),
       );
@@ -42,8 +41,7 @@ void main() {
   blocTest<ConnectivityBloc, ConnectivityState>(
     'emits [ConnectivityChecking, NoInternetConnection] when ConnectivityResult.none is received',
     build: () {
-      when(() => mockConnectivity.connectivity.onConnectivityChanged)
-          .thenAnswer(
+      when(() => mockDI.connectivity.onConnectivityChanged).thenAnswer(
         (_) =>
             Stream<ConnectivityResult>.fromIterable([ConnectivityResult.none]),
       );

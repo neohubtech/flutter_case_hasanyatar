@@ -32,5 +32,8 @@ final class MovieError extends MovieState {
       errorResponse as ErrorResponse<DioException>;
 
   @override
-  List<Object> get props => [errorResponse];
+  List<Object> get props => [errorResponse, error];
+
+  @override
+  bool? get stringify => true;
 }
