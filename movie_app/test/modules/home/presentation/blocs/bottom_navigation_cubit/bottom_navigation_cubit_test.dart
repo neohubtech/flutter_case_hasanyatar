@@ -14,12 +14,10 @@ void main() {
     blocTest<BottomNavigationCubit, int>(
       'emits [index] when onBottomNavigationItemTap is called multiple times',
       build: BottomNavigationCubit.new,
-      act: (cubit) {
-        cubit
-          ..onBottomNavigationItemTap(1)
-          ..onBottomNavigationItemTap(2)
-          ..onBottomNavigationItemTap(3);
-      },
+      act: (cubit) => cubit
+        ..onBottomNavigationItemTap(1)
+        ..onBottomNavigationItemTap(2)
+        ..onBottomNavigationItemTap(3),
       expect: () => [1, 2, 3],
     );
   });
