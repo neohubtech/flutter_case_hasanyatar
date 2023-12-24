@@ -13,7 +13,7 @@ class PrimaryPageAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backIcon,
     this.height = 40,
     this.color,
-    this.titleColor = AppColorTheme.turquoise,
+    this.titleColor = AppColorTheme.material50,
     this.titleStyle,
     this.iconColor = Colors.black,
     this.actions = const [],

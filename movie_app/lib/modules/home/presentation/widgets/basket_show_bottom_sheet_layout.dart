@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
+import 'package:movie_app/core/constants/assets.gen.dart';
 import 'package:movie_app/core/widgets/icons/close_icon.dart';
 import 'package:movie_app/modules/home/data/models/combined_list/combined_list_model.dart';
 import 'package:movie_app/modules/home/presentation/blocs/movie_basket_cubit/movie_basket_cubit.dart';
@@ -64,8 +66,25 @@ class _BasketList extends StatelessWidget {
       builder: (context, state) {
         if (state.movieCount == 0) {
           return Center(
-            child: Text(context.localizations.there_are_no_movies),
-          );
+              child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Lottie.asset(
+                Assets.lotties.noData,
+                repeat: false,
+              ),
+              Positioned(
+                bottom: 32.r,
+                child: Text(
+                  context.localizations.there_are_no_movies,
+                  textAlign: TextAlign.center,
+                  style: context.appTextTheme.h2?.copyWith(
+                    color: AppColorTheme.text,
+                  ),
+                ),
+              ),
+            ],
+          ));
         } else {
           return Expanded(
             child: ListView.builder(

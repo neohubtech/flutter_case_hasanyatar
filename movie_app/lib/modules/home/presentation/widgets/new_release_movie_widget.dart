@@ -103,12 +103,12 @@ class _AddBasketButton extends StatelessWidget {
         final hasContainBasket = state.shouldContainMovie(combinedData);
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          width: hasContainBasket ? 130.w : 40.w,
+          width: hasContainBasket ? 145.w : 40.w,
           height: 40.h,
           decoration: BoxDecoration(
             color: hasContainBasket
                 ? AppColorTheme.green
-                : AppColorTheme.turquoise,
+                : AppColorTheme.material40,
             borderRadius: hasContainBasket
                 ? BorderRadius.circular(25).r
                 : BorderRadius.circular(10).r,

@@ -23,7 +23,7 @@ class PrimaryPageLayout extends StatelessWidget {
     this.resizeToAvoidBottomInset,
     this.actions = const [],
     this.bottomNavigationBar,
-    this.titleColor = AppColorTheme.turquoise,
+    this.titleColor = AppColorTheme.material50,
     this.titleStyle,
     this.iconColor = Colors.black,
     this.isPinned = true,

@@ -1,6 +1,7 @@
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/modules/home/data/models/banner_list/banner_list_model.dart';
+import 'package:movie_app/modules/home/presentation/detail_screen.dart';
 import 'package:movie_app/modules/home/presentation/widgets/movie_section_title_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/neumorphic_widget.dart';
 import 'package:movie_app/utilities/extensions/localization_extension.dart';
@@ -53,12 +54,15 @@ class _CardWidget extends StatelessWidget {
       visible: imageUrl != null,
       child: GestureDetector(
         onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => DetailScreen(imageUrl, isActiveHero: true),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(
+                imageUrl ?? '',
+                isActiveHero: true,
+              ),
+            ),
+          );
         },
         child: Container(
           width: 120.w,
