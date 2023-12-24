@@ -37,3 +37,45 @@ https://intertechtr.github.io/interview.json
 - Bu ekranlar örnek ekranlardır, sizden tasarımları kendinize göre ui kullanarak geliştirmenizi bekliyoruz.
 
 ![flutter_case](https://github.com/neohubtech/flutter_case_hasanyatar/assets/5588840/fb116c29-7d45-4534-a41c-8744b733dfcf)
+
+
+<table border="1">
+    <tr>
+        <td>
+            <img src="images/image1.png" >
+        </td>
+        <td>
+            <img src="images/image2.png" >
+        </td>
+        <td>
+            <img src="images/image3.png" >
+        </td>
+    </tr>
+     <tr>
+        <td>
+            <img src="images/image4.png" >
+        </td>
+        <td>
+            <img src="images/image5.png" >
+        </td>
+        <td>
+            <img src="images/image6.png" >
+        </td>
+    </tr>
+</table>
+
+## GIF 
+<table border="1">
+    <tr>
+        <td>
+            <img src="gifs/gif1.gif" >
+        </td>
+        <td>
+            <img src="gifs/gif2.gif" >
+        </td>
+        <td>
+            <img src="gifs/gif3.gif" >
+        </td>
+    </tr>
+    
+</table>

@@ -47,7 +47,7 @@ class _CategoryListWidget extends StatelessWidget {
             crossAxisCount: 3,
             crossAxisSpacing: 10.r,
             mainAxisSpacing: 10.r,
-            childAspectRatio: 0.38.r,
+            childAspectRatio: 0.42.r,
           ),
           itemBuilder: (context, index) {
             return NeumorphicWidget(
