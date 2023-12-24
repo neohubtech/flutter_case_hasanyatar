@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/modules/home/presentation/widgets/neumorphic_widget.dart';
+import 'package:movie_app/utilities/extensions/localization_extension.dart';
 import 'package:movie_app/utilities/themes/app_color_theme.dart';
 import 'package:movie_app/utilities/themes/app_text_theme.dart';
 
@@ -19,7 +20,7 @@ class CategoryMovieWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10).r,
           child: Text(
-            'Kategoriler',
+            context.localizations.categories,
             style: context.appTextTheme.h1?.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColorTheme.darkBlue,

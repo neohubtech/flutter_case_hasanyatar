@@ -6,6 +6,7 @@ import 'package:movie_app/modules/home/presentation/blocs/movie_basket_cubit/mov
 import 'package:movie_app/modules/home/presentation/detail_screen.dart';
 
 import 'package:movie_app/modules/home/presentation/widgets/movie_section_title_widget.dart';
+import 'package:movie_app/utilities/extensions/localization_extension.dart';
 import 'package:movie_app/utilities/themes/app_color_theme.dart';
 import 'package:movie_app/utilities/themes/app_text_theme.dart';
 
@@ -18,9 +19,9 @@ class NewReleaseMovieWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const MovieSectionTitleWidget(
-          title: 'Yeni Çıkanlar',
-          trailingText: 'Tümünü Gör',
+        MovieSectionTitleWidget(
+          title: context.localizations.new_releases,
+          trailingText: context.localizations.see_all,
         ),
         10.verticalSpacingRadius,
         Padding(
@@ -131,7 +132,7 @@ class _AddBasketButton extends StatelessWidget {
                 if (hasContainBasket)
                   Expanded(
                     child: Text(
-                      'Added to card',
+                      context.localizations.added_to_basket,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: context.appTextTheme.bodySmall?.copyWith(

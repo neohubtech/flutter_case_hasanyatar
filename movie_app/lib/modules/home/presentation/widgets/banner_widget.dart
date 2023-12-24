@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/modules/home/data/models/banner_list/banner_list_model.dart';
 import 'package:movie_app/modules/home/presentation/widgets/movie_section_title_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/neumorphic_widget.dart';
+import 'package:movie_app/utilities/extensions/localization_extension.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget(
@@ -14,9 +15,9 @@ class BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const MovieSectionTitleWidget(
-          title: 'En Popüler',
-          trailingText: 'Listem',
+        MovieSectionTitleWidget(
+          title: context.localizations.most_popular,
+          trailingText: context.localizations.my_list,
         ),
         SizedBox(
           height: 160.h,

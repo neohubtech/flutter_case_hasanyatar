@@ -5,18 +5,7 @@ import 'package:movie_app/modules/home/presentation/blocs/movie_bloc/bloc/movie_
 import 'package:movie_app/modules/home/presentation/widgets/banner_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/category_movie_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/new_release_movie_widget.dart';
-
-const List<String> movieList = [
-  'https://image.tmdb.org/t/p/w220_and_h330_face/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/9dKCd55IuTT5QRs989m9Qlb7d2B.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/7WJjFviFBffEJvkAms4uWwbcVUk.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/6vcDalR50RWa309vBH1NLmG2rjQ.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/6XYLiMxHAaCsoyrVo38LBWMw2p8.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/5NxjLfs7Bi07bfZCRl9CCnUw7AA.jpg',
-  'https://image.tmdb.org/t/p/w220_and_h330_face/9dKCd55IuTT5QRs989m9Qlb7d2B.jpg',
-];
+import 'package:movie_app/utilities/extensions/localization_extension.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       child: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) => switch (state) {
           MovieError() => Center(
-              child: Text('Error ${state.error}'),
+              child: Text(context.localizations.system_error_occurred),
             ),
           MovieLoading() => const Center(
               child: CircularProgressIndicator(),

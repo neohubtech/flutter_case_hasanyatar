@@ -1,3 +1,23 @@
 {
-    
+    "@there_are_count_movies": {
+        "placeholders": {
+            "count": {
+                "example": "5",
+                "type": "int"
+            }
+        }
+    },
+    "added_to_basket": "Added to basket",
+    "categories": "Categories",
+    "home": "Home",
+    "more": "More",
+    "most_popular": "Most popular",
+    "my_basket": "My basket",
+    "my_list": "My list",
+    "new_releases": "New releases",
+    "no_internet_connection": "No Internet connection available",
+    "see_all": "See all",
+    "system_error_occurred": "A system error has been detected. We will fix it as soon as possible.",
+    "there_are_count_movies": "There are {count} movies in your card",
+    "there_are_no_movies": "There are no movies in your card"
 }

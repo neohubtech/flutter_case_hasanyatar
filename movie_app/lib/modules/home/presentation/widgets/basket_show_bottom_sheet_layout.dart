@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/core/widgets/icons/close_icon.dart';
 import 'package:movie_app/modules/home/data/models/combined_list/combined_list_model.dart';
 import 'package:movie_app/modules/home/presentation/blocs/movie_basket_cubit/movie_basket_cubit.dart';
+import 'package:movie_app/utilities/extensions/localization_extension.dart';
 import 'package:movie_app/utilities/themes/theme.exports.dart';
 
 class BasketShowBottomSheetLayout extends StatelessWidget {
@@ -25,7 +26,7 @@ class BasketShowBottomSheetLayout extends StatelessWidget {
             ),
             24.verticalSpacingRadius,
             Text(
-              'Sepetim',
+              context.localizations.my_basket,
               style: context.appTextTheme.h2?.copyWith(
                 color: AppColorTheme.text,
               ),
@@ -36,7 +37,9 @@ class BasketShowBottomSheetLayout extends StatelessWidget {
                 return state.movieCount == 0
                     ? const SizedBox.shrink()
                     : Text(
-                        'Sepetinizde ${state.movieCount} adet film bulunmaktadır.',
+                        context.localizations.there_are_count_movies(
+                          state.movieCount,
+                        ),
                         style: context.appTextTheme.bodySmall?.copyWith(
                           color: AppColorTheme.text,
                         ),
@@ -60,7 +63,9 @@ class _BasketList extends StatelessWidget {
     return BlocBuilder<MovieBasketCubit, MovieBasketState>(
       builder: (context, state) {
         if (state.movieCount == 0) {
-          return const Center(child: Text('Sepetinizde film bulunmamaktadır.'));
+          return Center(
+            child: Text(context.localizations.there_are_no_movies),
+          );
         } else {
           return Expanded(
             child: ListView.builder(

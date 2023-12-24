@@ -1,3 +1,23 @@
 {
-    
+    "@there_are_count_movies": {
+        "placeholders": {
+            "count": {
+                "example": "5",
+                "type": "int"
+            }
+        }
+    },
+    "added_to_basket": "Sepete eklendi",
+    "categories": "Kategoriler",
+    "home": "Ana Sayfa",
+    "more": "Daha Fazla",
+    "most_popular": "En Popüler",
+    "my_basket": "Sepetim",
+    "my_list": "Listem",
+    "new_releases": "Yeni Çıkanlar",
+    "no_internet_connection": "İnternet bağlantısı yok",
+    "see_all": "Tümünü Gör",
+    "system_error_occurred": "Bir sistem hatası tespit edildi. En kısa sürede düzelteceğiz.",
+    "there_are_count_movies": "Sepetinizde {count} adet film bulunmaktadır.",
+    "there_are_no_movies": "Sepetinizde film bulunmamaktadır."
 }
