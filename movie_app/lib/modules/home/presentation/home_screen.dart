@@ -1,13 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/core/widgets/layouts/primary_layout.dart';
 import 'package:movie_app/modules/home/presentation/blocs/movie_bloc/bloc/movie_bloc.dart';
 import 'package:movie_app/modules/home/presentation/widgets/banner_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/category_movie_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/new_release_movie_widget.dart';
-import 'package:movie_app/utilities/themes/app_color_theme.dart';
-import 'package:movie_app/utilities/themes/app_text_theme.dart';
 
 const List<String> movieList = [
   'https://image.tmdb.org/t/p/w220_and_h330_face/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg',

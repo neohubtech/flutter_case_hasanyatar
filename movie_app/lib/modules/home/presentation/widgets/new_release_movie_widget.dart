@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/modules/home/data/models/combined_list/combined_list_model.dart';
 import 'package:movie_app/modules/home/presentation/blocs/movie_basket_cubit/movie_basket_cubit.dart';
+import 'package:movie_app/modules/home/presentation/detail_screen.dart';
 
 import 'package:movie_app/modules/home/presentation/widgets/movie_section_title_widget.dart';
 import 'package:movie_app/utilities/themes/app_color_theme.dart';
@@ -52,27 +53,92 @@ class _CombinedListTile extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5).r,
           child: InkWell(
-            onTap: () =>
-                context.read<MovieBasketCubit>().onMovieTap(combinedData),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(
+                  combinedData.imageUrl ?? '',
+                  isActiveHero: true,
+                ),
+              ),
+            ),
             borderRadius: BorderRadius.circular(10).r,
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10).r,
-                  child: Image.network(
-                    combinedData.imageUrl ?? '',
-                    width: 100.w,
-                    height: 100.h,
-                    fit: BoxFit.cover,
+                Hero(
+                  tag: combinedData.imageUrl ?? '',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10).r,
+                    child: Image.network(
+                      combinedData.imageUrl ?? '',
+                      width: 100.w,
+                      height: 100.h,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 10.horizontalSpaceRadius,
                 _MovieDescription(combinedData),
-                Checkbox(
-                  value: state.shouldContainMovie(combinedData),
-                  onChanged: (value) =>
-                      context.read<MovieBasketCubit>().onMovieTap(combinedData),
-                ),
+                _AddBasketButton(combinedData: combinedData),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _AddBasketButton extends StatelessWidget {
+  const _AddBasketButton({
+    required this.combinedData,
+  });
+
+  final CombinedList combinedData;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MovieBasketCubit, MovieBasketState>(
+      builder: (context, state) {
+        final hasContainBasket = state.shouldContainMovie(combinedData);
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: hasContainBasket ? 130.w : 40.w,
+          height: 40.h,
+          decoration: BoxDecoration(
+            color: hasContainBasket
+                ? AppColorTheme.green
+                : AppColorTheme.turquoise,
+            borderRadius: hasContainBasket
+                ? BorderRadius.circular(25).r
+                : BorderRadius.circular(10).r,
+          ),
+          child: IconButton(
+            onPressed: () =>
+                context.read<MovieBasketCubit>().onMovieTap(combinedData),
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                if (hasContainBasket)
+                  const Icon(
+                    Icons.check,
+                    color: AppColorTheme.pureWhite,
+                  ),
+                if (!hasContainBasket)
+                  const Icon(
+                    Icons.shopping_cart,
+                    color: AppColorTheme.pureWhite,
+                  ),
+                if (hasContainBasket)
+                  Expanded(
+                    child: Text(
+                      'Added to card',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.appTextTheme.bodySmall?.copyWith(
+                        color: AppColorTheme.pureWhite,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -108,15 +174,6 @@ class _MovieDescription extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: context.appTextTheme.bodySmall?.copyWith(
               color: AppColorTheme.pureBlack,
-            ),
-          ),
-          3.verticalSpacingRadius,
-          Text(
-            combinedData.explanation ?? '',
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: context.appTextTheme.xSmallRegular?.copyWith(
-              color: AppColorTheme.textField,
             ),
           ),
         ],
