@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/modules/home/constants/movie_type.dart';
+import 'package:movie_app/modules/home/presentation/widgets/movie_section_title_widget.dart';
 import 'package:movie_app/modules/home/presentation/widgets/neumorphic_widget.dart';
 import 'package:movie_app/utilities/extensions/localization_extension.dart';
 import 'package:movie_app/utilities/themes/app_color_theme.dart';
-import 'package:movie_app/utilities/themes/app_text_theme.dart';
 
 class CategoryMovieWidget extends StatelessWidget {
   const CategoryMovieWidget({
@@ -17,15 +18,10 @@ class CategoryMovieWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10).r,
-          child: Text(
-            context.localizations.categories,
-            style: context.appTextTheme.h1?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColorTheme.darkBlue,
-            ),
-          ),
+        10.verticalSpacingRadius,
+        MovieSectionTitleWidget(
+          title: context.localizations.categories,
+          trailingText: context.localizations.more,
         ),
         10.verticalSpacingRadius,
         const _CategoryListWidget(),
@@ -72,7 +68,7 @@ class _CategoryListWidget extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10).r,
                             child: Image.asset(
-                              'assets/images/adventure.jpeg',
+                              MovieType.values[index].imageUrl,
                               height: 72.h,
                               fit: BoxFit.fitHeight,
                             ),
@@ -80,18 +76,18 @@ class _CategoryListWidget extends StatelessWidget {
                         ),
                       ),
                       6.horizontalSpaceRadius,
-                      const Expanded(
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Macera',
+                              MovieType.values[index].name(context),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
